@@ -1,17 +1,46 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const inputClass =
   "w-full border-2 border-line bg-surface px-4 py-3 text-sm text-foreground focus:outline-none focus:border-accent focus:bg-surface-2 transition-colors";
 
 export default function Contact() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSent(true);
+    setLoading(true);
+
+    const data = Object.fromEntries(new FormData(e.currentTarget));
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(data), // Quitamos el null, 2 para enviar un JSON limpio
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSent(true);
+        formRef.current?.reset();
+      } else {
+        console.error("Error sending message:", result);
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+    } finally {
+      setLoading(false);
+      // Nota: Ya no apagamos setSent aquí para que el mensaje de éxito permanezca visible
+    }
   }
 
   return (
@@ -44,8 +73,11 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="space-y-6"
+          ref={formRef}
         >
           <div>
+            {/* Corregido a "access_key" con doble 's' */}
+            <input type="hidden" name="access_key" value="dc18109c-e309-425a-9619-172c56e49a3a" />
             <label htmlFor="name" className="block text-xs uppercase tracking-widest mb-2">
               Name
             </label>
@@ -71,12 +103,13 @@ export default function Contact() {
           </div>
 
           <motion.button
+            disabled={loading || sent}
             type="submit"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
-            className="w-full border-2 border-accent bg-accent text-background py-4 uppercase tracking-widest text-sm font-bold hover:bg-accent-2 hover:border-accent-2 transition-colors"
+            className=" cursor-pointer w-full border-2 border-accent bg-accent text-background py-4 uppercase tracking-widest text-sm font-bold hover:bg-accent-2 hover:border-accent-2 transition-colors disabled:opacity-50"
           >
-            Send Message
+            {loading ? "Sending..." : sent ? "Message Sent" : "Send Message"}
           </motion.button>
         </motion.form>
 
@@ -118,7 +151,7 @@ export default function Contact() {
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-8 text-center text-sm uppercase tracking-widest"
+            className="mt-8 text-center text-sm uppercase tracking-widest text-accent"
           >
             {"Message received. I'll get back to you soon."}
           </motion.p>

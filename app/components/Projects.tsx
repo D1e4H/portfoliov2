@@ -12,13 +12,21 @@ function AccordionPanel({
   children: React.ReactNode;
 }) {
   return (
-    <div
-      className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
-        open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-      }`}
+    <motion.div
+      initial={false}
+      animate={{
+        height: open ? "auto" : 0,
+        opacity: open ? 1 : 0,
+      }}
+      transition={{
+        duration: 0.1,
+        ease: [0.04, 0.62, 0.23, 0.98],
+      }}
+      style={{ willChange: "height, opacity" }}
+      className="overflow-hidden"
     >
-      <div className="overflow-hidden">{children}</div>
-    </div>
+      {children}
+    </motion.div>
   );
 }
 
@@ -143,7 +151,7 @@ export default function Projects() {
 
         <div className="flex flex-col-reverse gap-12 lg:grid lg:grid-cols-[1fr_1.15fr] lg:items-start lg:gap-16">
           <div className="order-first lg:order-none lg:sticky lg:top-24">
-            <div className="grid">
+            <div className="grid ">
               {projects.map((project, i) => (
                 <ScreenshotLayer
                   key={project.title}
@@ -172,7 +180,7 @@ export default function Projects() {
                   <button
                     type="button"
                     onClick={() => setExpanded(isOpen ? null : i)}
-                    className={`relative flex w-full items-baseline gap-4 py-8 pr-4 pl-2 text-left transition-colors sm:gap-6 ${
+                    className={`relative cursor-pointer flex w-full items-baseline gap-4 py-8 pr-4 pl-2 text-left transition-colors sm:gap-6 ${
                       isActive
                         ? "bg-surface text-foreground"
                         : "text-muted hover:text-foreground"
