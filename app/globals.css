@@ -1,26 +1,49 @@
 @import "tailwindcss";
 
+@theme {
+  --color-background: #08080a;
+  --color-foreground: #f4f4f5;
+  --color-surface: #121216;
+  --color-surface-2: #1a1a20;
+  --color-muted: #9ca3af;
+  --color-line: #26262d;
+  --color-accent: #22d3ee;
+  --color-accent-2: #a78bfa;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #08080a;
+  --foreground: #f4f4f5;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-pixel);
+  --font-mono: var(--font-pixel);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(1100px 700px at 80% -10%, rgba(167, 139, 250, 0.14), transparent 60%),
+    radial-gradient(900px 650px at 0% 110%, rgba(34, 211, 238, 0.12), transparent 60%),
+    #08080a;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-pixel);
+}
+
+.section-gradient {
+  background:
+    radial-gradient(1000px 620px at 85% -10%, rgba(167, 139, 250, 0.14), transparent 60%),
+    radial-gradient(820px 520px at 5% 115%, rgba(34, 211, 238, 0.12), transparent 55%),
+    linear-gradient(180deg, #0b0b12 0%, #08080a 45%, #0c0c14 100%);
+}
+
+::selection {
+  background: var(--color-accent-2);
+  color: #08080a;
 }
