@@ -62,18 +62,18 @@ export default function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-6 text-xs uppercase tracking-[0.25em] text-accent md:text-sm"
+            className="mb-6 m-2 text-xs uppercase tracking-[0.25em] text-accent md:text-sm"
           >
-            {"     [        Hello, world ]"}
+            {"     [ Hello world, im ]"}
           </motion.p>
 
           <motion.h2
             initial={{ y: 24, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="text-xl font-bold uppercase tracking-widest text-muted md:text-2xl"
+            className="text-xl m-2 font-bold uppercase tracking-widest text-muted md:text-2xl"
           >
-            Diego Henriquez
+          Diego Henriquez
           </motion.h2>
 
           <motion.h1
@@ -102,7 +102,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 1.05 }}
             className="mt-6 text-sm uppercase tracking-widest text-muted md:text-base"
           >
-            {"// Building interfaces that move"}
+            {"// Building interfaces that feels alive"}
           </motion.p>
 
           <motion.div

@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 
 const stats = [
-  { value: "2+", label: "Years Experience" },
-  { value: "15+", label: "Projects Built" },
+  { value: "1", label: "Years Experience" },
+  { value: "10+", label: "Projects Built" },
   { value: "8", label: "Technologies" },
   { value: "∞", label: "Cups of Coffee" },
 ];
@@ -41,7 +41,7 @@ export default function About() {
             viewport={{ once: true }}
             className="text-base leading-relaxed text-foreground md:text-lg"
           >
-            I'm a Front End Developer who loves turning ideas into fast,
+            I'm a self taugh Front End Developer based in Venezuela who loves turning ideas into fast,
             accessible and beautiful interfaces. My journey started with a
             simple curiosity for how websites work, and it grew into a passion
             for building products that people enjoy using every day.
@@ -55,8 +55,7 @@ export default function About() {
             className="text-base leading-relaxed text-muted md:text-lg"
           >
             When I'm not coding, you'll find me exploring new tools, sharing
-            what I learn and always looking for the next challenge. I believe
-            great software is a mix of solid engineering and thoughtful design.
+            what I learn and always looking for the next challenge. 
           </motion.p>
         </div>
 

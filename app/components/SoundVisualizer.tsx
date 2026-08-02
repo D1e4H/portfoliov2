@@ -157,7 +157,7 @@ export default function SoundVisualizer() {
     <div
       ref={containerRef}
       aria-hidden="true"
-      className="absolute inset-0 pointer-events-none"
+      className="md:ml-150 sm:ml-50 absolute inset-0 pointer-events-none"
     />
   );
 }

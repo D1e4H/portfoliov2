@@ -88,21 +88,25 @@ export default function Contact() {
           className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm uppercase tracking-widest"
         >
           <motion.a
-            href="mailto:hello@diegohenriquez.dev"
+            href="mailto:diegoandrezenriquez@gmail.com"
             whileHover={{ scale: 1.05 }}
             className="border-2 border-line px-4 py-2 text-foreground hover:border-accent hover:text-accent transition-colors"
           >
             Email
           </motion.a>
           <motion.a
-            href="#"
+            href="https://github.com/D1e4h"
+            rel="noopener noreferrer"
+            target="_blank"
             whileHover={{ scale: 1.05 }}
             className="border-2 border-line px-4 py-2 text-foreground hover:border-accent hover:text-accent transition-colors"
           >
             GitHub
           </motion.a>
           <motion.a
-            href="#"
+            href="https://www.linkedin.com/in/diego-henriquezar/"
+            rel="noopener noreferrer"
+            target="_blank"
             whileHover={{ scale: 1.05 }}
             className="border-2 border-line px-4 py-2 text-foreground hover:border-accent hover:text-accent transition-colors"
           >

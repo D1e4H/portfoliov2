@@ -10,7 +10,7 @@ const technologies = [
   { name: "TypeScript", slug: "typescript", color: "#3178C6" },
   { name: "Git", slug: "git", color: "#F05032" },
   { name: "HTML", slug: "html5", color: "#E34F26" },
-  { name: "CSS", slug: "css3", color: "#1572B6" },
+  { name: "CSS", slug: "CSS", color: "#1572B6" },
 ];
 
 const container = {
