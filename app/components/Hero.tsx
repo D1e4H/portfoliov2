@@ -2,8 +2,7 @@
 
 import { motion } from "framer-motion";
 import SoundVisualizer from "./SoundVisualizer";
-
-const lines = ["FRONT END", "DEVELOPER"];
+import { useLanguage } from "../i18n/LanguageContext";
 
 const charVariants = {
   hidden: { y: "110%", opacity: 0 },
@@ -47,6 +46,9 @@ function LineText({
 }
 
 export default function Hero() {
+  const { t } = useLanguage();
+  const lines = t.hero.lines;
+
   return (
     <section
       id="home"
@@ -64,7 +66,7 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
             className="mb-6 m-2 text-xs uppercase tracking-[0.25em] text-accent md:text-sm"
           >
-            {"     [ Hello world, im ]"}
+            {"     " + t.hero.greeting}
           </motion.p>
 
           <motion.h2
@@ -73,7 +75,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="text-xl m-2 font-bold uppercase tracking-widest text-muted md:text-2xl"
           >
-          Diego Henriquez
+          {t.hero.name}
           </motion.h2>
 
           <motion.h1
@@ -102,7 +104,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 1.05 }}
             className="mt-6 text-sm uppercase tracking-widest text-muted md:text-base"
           >
-            {"// Building interfaces that feels alive"}
+            {t.hero.tagline}
           </motion.p>
 
           <motion.div
@@ -117,7 +119,7 @@ export default function Hero() {
               whileTap={{ scale: 0.95 }}
               className="border-2 border-accent bg-accent px-8 py-3 text-sm font-bold uppercase tracking-widest text-background transition-colors hover:border-accent-2 hover:bg-accent-2"
             >
-              View Work
+              {t.hero.viewWork}
             </motion.a>
             <motion.a
               href="#contact"
@@ -125,7 +127,7 @@ export default function Hero() {
               whileTap={{ scale: 0.95 }}
               className="border-2 border-foreground px-8 py-3 text-sm uppercase tracking-widest text-foreground transition-colors hover:bg-foreground hover:text-background"
             >
-              Contact Me
+              {t.hero.contactMe}
             </motion.a>
           </motion.div>
         </div>

@@ -2,11 +2,13 @@
 
 import { motion } from "framer-motion";
 import { useState, useRef } from "react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const inputClass =
   "w-full border-2 border-line bg-surface px-4 py-3 text-sm text-foreground focus:outline-none focus:border-accent focus:bg-surface-2 transition-colors";
 
 export default function Contact() {
+  const { t } = useLanguage();
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
@@ -24,7 +26,7 @@ export default function Contact() {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify(data), // Quitamos el null, 2 para enviar un JSON limpio
+        body: JSON.stringify(data),
       });
 
       const result = await response.json();
@@ -39,7 +41,6 @@ export default function Contact() {
       console.error("Error sending message:", error);
     } finally {
       setLoading(false);
-      // Nota: Ya no apagamos setSent aquí para que el mensaje de éxito permanezca visible
     }
   }
 
@@ -55,7 +56,7 @@ export default function Contact() {
           viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold uppercase tracking-widest text-center mb-4"
         >
-          Contact Me
+          {t.contact.title}
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
@@ -64,7 +65,7 @@ export default function Contact() {
           transition={{ delay: 0.2 }}
           className="text-center text-muted text-sm uppercase tracking-widest mb-12"
         >
-          {"// Let's build something together"}
+          {t.contact.subtitle}
         </motion.p>
 
         <motion.form
@@ -76,22 +77,21 @@ export default function Contact() {
           ref={formRef}
         >
           <div>
-            {/* Corregido a "access_key" con doble 's' */}
             <input type="hidden" name="access_key" value="dc18109c-e309-425a-9619-172c56e49a3a" />
             <label htmlFor="name" className="block text-xs uppercase tracking-widest mb-2">
-              Name
+              {t.contact.name}
             </label>
             <input id="name" name="name" type="text" required className={inputClass} />
           </div>
           <div>
             <label htmlFor="email" className="block text-xs uppercase tracking-widest mb-2">
-              Email
+              {t.contact.email}
             </label>
             <input id="email" name="email" type="email" required className={inputClass} />
           </div>
           <div>
             <label htmlFor="message" className="block text-xs uppercase tracking-widest mb-2">
-              Message
+              {t.contact.message}
             </label>
             <textarea
               id="message"
@@ -109,7 +109,7 @@ export default function Contact() {
             whileTap={{ scale: 0.97 }}
             className=" cursor-pointer w-full border-2 border-accent bg-accent text-background py-4 uppercase tracking-widest text-sm font-bold hover:bg-accent-2 hover:border-accent-2 transition-colors disabled:opacity-50"
           >
-            {loading ? "Sending..." : sent ? "Message Sent" : "Send Message"}
+            {loading ? t.contact.sending : sent ? t.contact.sent : t.contact.send}
           </motion.button>
         </motion.form>
 
@@ -153,7 +153,7 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             className="mt-8 text-center text-sm uppercase tracking-widest text-accent"
           >
-            {"Message received. I'll get back to you soon."}
+            {t.contact.received}
           </motion.p>
         )}
       </div>

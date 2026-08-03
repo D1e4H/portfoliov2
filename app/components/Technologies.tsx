@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const technologies = [
   { name: "React", slug: "react", color: "#61DAFB" },
@@ -26,6 +27,8 @@ const item = {
 };
 
 export default function Technologies() {
+  const { t } = useLanguage();
+
   return (
     <section
       id="technologies"
@@ -38,7 +41,7 @@ export default function Technologies() {
           viewport={{ once: true }}
           className="mb-4 text-center text-3xl font-bold uppercase tracking-widest md:text-4xl"
         >
-          Technologies
+          {t.technologies.title}
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
@@ -47,7 +50,7 @@ export default function Technologies() {
           transition={{ delay: 0.2 }}
           className="mb-12 text-center text-sm uppercase tracking-widest text-muted"
         >
-          {"// The tools I build with"}
+          {t.technologies.subtitle}
         </motion.p>
 
         <motion.ul

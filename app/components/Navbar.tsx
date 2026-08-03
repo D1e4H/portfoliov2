@@ -2,17 +2,19 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const links = [
-  { label: "Home", href: "#home" },
-  { label: "Technologies", href: "#technologies" },
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
-];
+import { useLanguage } from "../i18n/LanguageContext";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { t } = useLanguage();
+
+  const links = [
+    { label: t.nav.home, href: "#home" },
+    { label: t.nav.technologies, href: "#technologies" },
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.projects, href: "#projects" },
+    { label: t.nav.contact, href: "#contact" },
+  ];
 
   return (
     <motion.header

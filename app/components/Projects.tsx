@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { projects } from "../data/projects";
+import { useLanguage } from "../i18n/LanguageContext";
 
 function AccordionPanel({
   open,
@@ -122,6 +123,7 @@ function Screenshot({ project }: { project: (typeof projects)[number] }) {
 }
 
 export default function Projects() {
+  const { t } = useLanguage();
   const [active, setActive] = useState(0);
   const [expanded, setExpanded] = useState<number | null>(null);
 
@@ -137,7 +139,7 @@ export default function Projects() {
           viewport={{ once: true }}
           className="mb-4 text-center text-3xl font-bold uppercase tracking-widest md:text-5xl"
         >
-          Projects
+          {t.projects.title}
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
@@ -146,7 +148,7 @@ export default function Projects() {
           transition={{ delay: 0.15 }}
           className="mb-16 text-center text-sm uppercase tracking-widest text-muted"
         >
-          {"// Hover a project to preview it"}
+          {t.projects.subtitle}
         </motion.p>
 
         <div className="flex flex-col-reverse gap-12 lg:grid lg:grid-cols-[1fr_1.15fr] lg:items-start lg:gap-16">
@@ -215,7 +217,7 @@ export default function Projects() {
                   <AccordionPanel open={isOpen}>
                     <div className="border-t border-line px-4 py-5 pl-10">
                       <p className="mb-4 text-sm leading-relaxed text-muted">
-                        {project.description}
+                        {t.projects.descriptions[project.title] ?? project.description}
                       </p>
                       <div className="flex flex-wrap items-center gap-3">
                         <div className="flex flex-wrap gap-2">
@@ -235,7 +237,7 @@ export default function Projects() {
                               target="_blank"
                               rel="noopener noreferrer"
                               className="p-2 text-muted transition-colors hover:text-foreground"
-                              aria-label={`${project.title} repository on GitHub`}
+                              aria-label={`${project.title} ${t.projects.repoAria}`}
                             >
                               <GithubIcon className="h-5 w-5" />
                             </a>
@@ -247,7 +249,7 @@ export default function Projects() {
                               rel="noopener noreferrer"
                               className="border border-line px-3 py-1.5 text-[10px] uppercase tracking-widest text-accent transition-colors hover:bg-accent hover:text-background"
                             >
-                              View
+                              {t.projects.view}
                             </a>
                           )}
                         </div>

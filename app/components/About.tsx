@@ -1,15 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-const stats = [
-  { value: "1", label: "Years Experience" },
-   { value: "8", label: "Technologies" },
-  { value: "∞", label: "Cups of Coffee" },
-  { value: "100%", label: "Passion" },
-];
+import { useLanguage } from "../i18n/LanguageContext";
 
 export default function About() {
+  const { t } = useLanguage();
+  const stats = t.about.stats;
+
   return (
     <section
       id="about"
@@ -22,7 +19,7 @@ export default function About() {
           viewport={{ once: true }}
           className="mb-4 text-center text-3xl font-bold uppercase tracking-widest md:text-4xl"
         >
-          About Me
+          {t.about.title}
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
@@ -31,7 +28,7 @@ export default function About() {
           transition={{ delay: 0.2 }}
           className="mb-12 text-center text-sm uppercase tracking-widest text-muted"
         >
-          {"// The developer behind the screen"}
+          {t.about.subtitle}
         </motion.p>
 
         <div className="space-y-6 text-left">
@@ -41,10 +38,7 @@ export default function About() {
             viewport={{ once: true }}
             className="text-base leading-relaxed text-foreground md:text-lg"
           >
-            I'm a self taugh Front End Developer based in Venezuela who loves turning ideas into fast,
-            accessible and beautiful interfaces. My journey started with a
-            simple curiosity for how websites work, and it grew into a passion
-            for building products that people enjoy using every day.
+            {t.about.paragraphs[0]}
           </motion.p>
 
           <motion.p
@@ -54,8 +48,7 @@ export default function About() {
             transition={{ delay: 0.1 }}
             className="text-base leading-relaxed text-muted md:text-lg"
           >
-            When I'm not coding, you'll find me exploring new tools, sharing
-            what I learn and always looking for the next challenge. 
+            {t.about.paragraphs[1]}
           </motion.p>
         </div>
 

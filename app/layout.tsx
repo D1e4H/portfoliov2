@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Share_Tech_Mono } from "next/font/google";
+import { LanguageProvider } from "./i18n/LanguageContext";
 import "./globals.css";
 
 const shareTechMono = Share_Tech_Mono({
@@ -24,7 +25,7 @@ export default function RootLayout({
       className={`${shareTechMono.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );
