@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Fondo opcional oscuro para que resalte igual que tu diseño -->
+  <rect width="32" height="32" rx="6" fill="#09090b" />
+  
+  <!-- Símbolo de apertura < (Cian) -->
+  <text x="3" y="22" font-family="monospace" font-weight="bold" font-size="16" fill="#22d3ee">&lt;</text>
+  
+  <!-- Iniciales DH (Blanco) -->
+  <text x="10" y="22" font-family="monospace" font-weight="bold" font-size="14" fill="#ffffff">DH</text>
+  
+  <!-- Barra / y símbolo de cierre > (Violeta/Morado) -->
+  <text x="23" y="22" font-family="monospace" font-weight="bold" font-size="16" fill="#a78bfa">/&gt;</text>
+</svg>
